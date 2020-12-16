@@ -15,6 +15,7 @@ public class Console {
 
     public void start() {
         greetings();
+
     }
 
     public void goodBay() {

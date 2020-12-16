@@ -19,7 +19,7 @@ public class LoadFile {
         while (!(hasFileExist)) {
             String inputText = new Scanner(System.in).nextLine();
             if (inputText.equals("exit")) {
-                break;
+                System.exit(0);
             } else {
                 try {
                     FileReader fileReader = new FileReader(inputText);
