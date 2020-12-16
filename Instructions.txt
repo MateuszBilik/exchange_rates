@@ -1,0 +1,38 @@
+Napisac konsolowu aplikacju, ktora bede interfacem do pracy z danymi Forex.
+Przykladowy plik z formatem danych jest w tym samym folderze
+
+Ogolna informacja o danych.
+Open - cena na poczatek minuty
+High - maxymalna cena w ciagu minuty
+Low - minimalna cena w ciagu minuty
+Close - cena na koniec minuty
+Volume - nie uzywamy
+
+Jasne ze to samo dotyczy godziny i dni - tylko te dane juz trzeba bede wylicycz na podstawie minutowych danych
+
+Volatility = High - Low
+
+1. W konsoli zapytac u usera <file_name>.
+ - Jesli plik istnieje - wcagnac dane i oczekiwac nastepne komendy
+ - Jesli plik nie istnieje - zaproponowac useru wbic prawidlowe imie pliku
+
+2. Dostawac od usera komendy i podawac odpowiedzi (do poky user nie wpisze exit albo quit)
+3. Logowac wszytcy zapytania i odpowiedzi do pliku
+4. Kazde nowe odpalenie aplikacji tworzy nowy plik do logowania, stare pliki trzeba nie usuwac
+5. Lista komend:
+ - get <high/low/open/close (jeden z tych parametrow)> yyyy.mm.dd hh:mm
+ przyklad: get low 2020.11.02 13:55 -> 1.162340
+ - get <high/low/open/close> yyyy.mm.dd hh
+ - get <high/low/open/close> yyyy.mm.dd
+ - get yyyy.mm.dd hh:mm (musi wydrokowac wszystcy ceny)
+ przyklad get 2020.11.02 13:55 -> {1.162390,1.162400,1.162340,1.162400,0}
+ - get yyyy.mm.dd hh
+ - get yyyy.mm.dd
+ - volatility yyyy.mm.dd-hh:mm
+ - volatility yyyy.mm.dd-hh
+ - volatility yyyy.mm.dd
+ - most_volatile_day
+ - most_volatile_hour
+ - average_minutely_volatility
+ - average_hourly_volatility
+ - average_daily_volatility
