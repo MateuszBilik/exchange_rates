@@ -1,11 +1,16 @@
 import Console.Console;
-import WorkWithFile.MyDate;
 import WorkWithFile.DataForOneMinute;
+import WorkWithFile.MyDate;
 import WorkWithFile.MyTime;
 import WorkWithFile.MyValue;
+import Console.Methods;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
+
 import java.util.Scanner;
 
 public class Main {
@@ -52,7 +57,8 @@ public class Main {
                     listOfData.add(new DataForOneMinute(     //YYYY.MM.DD,HH:MM,OPEN,HIGH,LOW,CLOSE,VOLUME
                             new MyDate(Integer.parseInt(date[0]), Integer.parseInt(date[1]), Integer.parseInt(date[2])),
                             new MyTime(Integer.parseInt(time[0]), Integer.parseInt(time[1])),
-                            new MyValue(listSeparatedData[2], listSeparatedData[3], listSeparatedData[4], listSeparatedData[5])));
+                            new MyValue(Double.parseDouble(listSeparatedData[2]), Double.parseDouble(listSeparatedData[3]),
+                                    Double.parseDouble(listSeparatedData[4]), Double.parseDouble(listSeparatedData[5]))));
                 }
             }
         } catch (IOException e) {
@@ -60,20 +66,16 @@ public class Main {
         }
 
 
-        Integer year = null;
-        Integer month = null;
-        Integer day = null;
-        String typeData = null;
-
-        listOfData.stream()
-                .filter(x -> x.getDate().getYear() == year)
-                .filter(x -> x.getDate().getMonth() == month)
-                .filter(x -> x.getDate().getDay() == day)
-                .filter(x -> x.getDate().getYear() == typeData)
+        Integer year = 2020;
+        Integer month = 11;
+        Integer day = 01;
+        Integer minute = 27;
+        Integer hour = 17;
+        String typeData = "open";
 
 
-
-
+        System.out.println(Methods.getTypeForMinute(listOfData, day, month, year, hour, minute, typeData));
+        System.out.println(Methods.getForMinute(listOfData, day, month, year, hour, minute));
 
 
     }

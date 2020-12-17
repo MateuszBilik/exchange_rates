@@ -7,26 +7,21 @@ public class DataForOneMinute {
     private MyTime time;
     private MyValue value;
 
-    public Integer getOneFromDay (String type, int year, int month, int day) {
-
-        DataForOneMinute file = new DataForOneMinute();
-
-
-
-        switch (type) {
-            case "open":
-
-            case "high":
-
-            case "low":
-
-            case "close":
-
-        }
-
-
-
-    }
+//    public Integer getOneFromDay (String type, int year, int month, int day) {
+//
+//
+//        switch (type) {
+//            case "open":
+//
+//            case "high":
+//
+//            case "low":
+//
+//            case "close":
+//
+//        }
+//
+//    }
 
 
 
