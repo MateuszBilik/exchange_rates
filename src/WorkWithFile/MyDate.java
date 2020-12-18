@@ -1,7 +1,5 @@
 package WorkWithFile;
 
-import Console.Methods;
-
 public class MyDate {
 
     private Integer year;

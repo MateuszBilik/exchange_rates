@@ -3,7 +3,7 @@ import WorkWithFile.DataForOneMinute;
 import WorkWithFile.MyDate;
 import WorkWithFile.MyTime;
 import WorkWithFile.MyValue;
-import Console.Methods;
+import Console.MethodsGet;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -74,10 +74,26 @@ public class Main {
         String typeData = "open";
 
 
-        System.out.println(Methods.getTypeForMinute(listOfData, day, month, year, hour, minute, typeData));
-        System.out.println(Methods.getForMinute(listOfData, day, month, year, hour, minute));
+        System.out.println(MethodsGet.getTypeForMinute(listOfData, day, month, year, hour, minute, typeData));
+        System.out.println(MethodsGet.getForMinute(listOfData, day, month, year, hour, minute));
 
+        System.out.println("Wartość dla dnia:");
+        System.out.println(MethodsGet.getTypeForDay(listOfData, day, month, year, "high") + " high");
+        System.out.println(MethodsGet.getTypeForDay(listOfData, day, month, year, "low") + " low");
+        System.out.println(MethodsGet.getTypeForDay(listOfData, day, month, year, "open") + " open");
+        System.out.println(MethodsGet.getTypeForDay(listOfData, day, month, year, "close") + " close");
 
+        System.out.println("Wartość dla Godziny:");
+        System.out.println(MethodsGet.getTypeForHour(listOfData, day, month, year, hour, "high") + " high");
+        System.out.println(MethodsGet.getTypeForHour(listOfData, day, month, year, hour, "low") + " low");
+        System.out.println(MethodsGet.getTypeForHour(listOfData, day, month, year, hour, "open") + " open");
+        System.out.println(MethodsGet.getTypeForHour(listOfData, day, month, year, hour, "close") + " close");
+
+        System.out.println("Wartość dla minuty:");
+        System.out.println(MethodsGet.getTypeForMinute(listOfData, day, month, year, hour, minute,  "high") + " high");
+        System.out.println(MethodsGet.getTypeForMinute(listOfData, day, month, year, hour, minute, "low") + " low");
+        System.out.println(MethodsGet.getTypeForMinute(listOfData, day, month, year, hour, minute, "open") + " open");
+        System.out.println(MethodsGet.getTypeForMinute(listOfData, day, month, year, hour, minute, "close") + " close");
     }
 }
 
