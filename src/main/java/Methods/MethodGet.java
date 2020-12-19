@@ -1,12 +1,13 @@
-package Console;
+package Methods;
 
 import WorkWithFile.DataForOneMinute;
 import WorkWithFile.MyValue;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class MethodsGet {
+public class MethodGet {
 
     public static List<DataForOneMinute> getForDay(List<DataForOneMinute> list, int day, int month, int year) {
         return list.stream()
@@ -28,25 +29,22 @@ public class MethodsGet {
                 .collect(Collectors.toList());
     }
 
-    public static Double getTypeForMinute(List<DataForOneMinute> list, int day, int month, int year, int hour, int minute, String type) {
-
+    public static BigDecimal getTypeForMinute(List<DataForOneMinute> list, int day, int month, int year, int hour, int minute, String type) {
         list = getForMinute(list, day, month, year, hour, minute);
         return getType(list, type);
     }
 
-    public static Double getTypeForHour(List<DataForOneMinute> list, int day, int month, int year, int hour, String type) {
-
+    public static BigDecimal getTypeForHour(List<DataForOneMinute> list, int day, int month, int year, int hour, String type) {
         list = getForHour(list, day, month, year, hour);
         return getType(list, type);
     }
 
-    public static Double getTypeForDay(List<DataForOneMinute> list, int day, int month, int year, String type) {
-
+    public static BigDecimal getTypeForDay(List<DataForOneMinute> list, int day, int month, int year, String type) {
         list = getForDay(list, day, month, year);
         return getType(list, type);
     }
 
-    private static Double getType(List<DataForOneMinute> list, String type) {
+    private static BigDecimal getType(List<DataForOneMinute> list, String type) {
         switch (type) {
             case "open":
                 return openValueForPeriodTime(list);
@@ -56,12 +54,12 @@ public class MethodsGet {
                 return lowForTimePerioid(list);
             case "close":
                 return closeForTimePerioid(list);
-            default: return 0.0;
+        default: return BigDecimal.ZERO;
         }
     }
 
-    private static Double lowForTimePerioid(List<DataForOneMinute> list) {
-        List<Double> low = list.stream()
+    private static BigDecimal lowForTimePerioid(List<DataForOneMinute> list) {
+        List<BigDecimal> low = list.stream()
                 .map(DataForOneMinute::getValue)
                 .map(MyValue::getLow)
                 .sorted()
@@ -69,8 +67,8 @@ public class MethodsGet {
         return low.get(0);
     }
 
-    private static Double highForTimePerioid(List<DataForOneMinute> list) {
-        List<Double> high = list.stream()
+    private static BigDecimal highForTimePerioid(List<DataForOneMinute> list) {
+        List<BigDecimal> high = list.stream()
                 .map(DataForOneMinute::getValue)
                 .map(MyValue::getHigh)
                 .sorted()
@@ -78,16 +76,16 @@ public class MethodsGet {
         return high.get(high.size() - 1);
     }
 
-    private static Double closeForTimePerioid(List<DataForOneMinute> list) {
-        List<Double> close = list.stream()
+    private static BigDecimal closeForTimePerioid(List<DataForOneMinute> list) {
+        List<BigDecimal> close = list.stream()
                 .map(DataForOneMinute::getValue)
                 .map(MyValue::getClose)
                 .collect(Collectors.toList());
         return close.get(close.size() - 1);
     }
 
-    private static Double openValueForPeriodTime(List<DataForOneMinute> list) {
-        List<Double> open = list.stream()
+    private static BigDecimal openValueForPeriodTime(List<DataForOneMinute> list) {
+        List<BigDecimal> open = list.stream()
                 .map(DataForOneMinute::getValue)
                 .map(MyValue::getOpen)
                 .collect(Collectors.toList());

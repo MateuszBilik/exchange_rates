@@ -1,7 +1,9 @@
 package Console;
 
+import WorkWithFile.DataForOneMinute;
+
 import java.io.BufferedReader;
-import java.util.Scanner;
+import java.util.List;
 
 public class Console {
 
@@ -10,12 +12,12 @@ public class Console {
         System.out.println("What do you want to do with file?");
 
 
-
     }
 
-    public void start() {
+    public List<DataForOneMinute> startAndLoad() {
         greetings();
-
+        BufferedReader myFile = new LoadFile().loadFile();
+        return ConvertToWork.createListWithDataForOneMinutesLines(myFile);
     }
 
     public void goodBay() {
@@ -36,9 +38,4 @@ public class Console {
                 Please, give me your file name with you would like to work:
                 """);
     }
-
-    public boolean ifExit (String word) {
-        return true;
-    }
-
 }

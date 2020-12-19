@@ -8,22 +8,19 @@ import java.util.Scanner;
 
 public class LoadFile {
 
-    private BufferedReader myFile = null;
-
-    public void loadFile() {
-
-        Console console = new Console();
-
+    public BufferedReader loadFile() {
+        BufferedReader myFile = null;
         boolean hasFileExist = false;
 
         while (!(hasFileExist)) {
             String inputText = new Scanner(System.in).nextLine();
             if (inputText.equals("exit")) {
                 System.exit(0);
+                break;
             } else {
                 try {
-                    FileReader fileReader = new FileReader(inputText);
-                    BufferedReader myfile = new BufferedReader(fileReader);
+                    inputText = "DAT_MT_EURUSD_M1_202011.csv"; //TODO aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                    myFile = new BufferedReader(new FileReader(inputText));
                     hasFileExist = true;
                     System.out.println("File found.");
                 } catch (FileNotFoundException e) {
@@ -31,18 +28,6 @@ public class LoadFile {
                 }
             }
         }
-    }
-
-    public ArrayList<String> fileToList (BufferedReader myFile) {
-
-        ArrayList<String> listFromFile = new ArrayList<>();
-
-//        while (myFile.re)
-//        myFile.readLine()
-        return listFromFile;
-    }
-
-    public BufferedReader getMyFile() {
         return myFile;
     }
 }
