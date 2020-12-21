@@ -4,6 +4,7 @@ public class MyTime {
     private int hour;
     private int minute;
 
+
     public int getHour() {
         return hour;
     }
@@ -32,4 +33,5 @@ public class MyTime {
                 ", minute=" + minute +
                 '}';
     }
+
 }
