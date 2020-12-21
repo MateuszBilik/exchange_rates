@@ -49,16 +49,16 @@ public class MethodGet {
             case "open":
                 return openValueForPeriodTime(list);
             case "high":
-                return highForTimePerioid(list);
+                return highForTimePeriod(list);
             case "low":
-                return lowForTimePerioid(list);
+                return lowForTimePeriod(list);
             case "close":
-                return closeForTimePerioid(list);
+                return closeForTimePeriod(list);
         default: return BigDecimal.ZERO;
         }
     }
 
-    private static BigDecimal lowForTimePerioid(List<DataForOneMinute> list) {
+    private static BigDecimal lowForTimePeriod(List<DataForOneMinute> list) {
         List<BigDecimal> low = list.stream()
                 .map(DataForOneMinute::getValue)
                 .map(MyValue::getLow)
@@ -67,7 +67,7 @@ public class MethodGet {
         return low.get(0);
     }
 
-    private static BigDecimal highForTimePerioid(List<DataForOneMinute> list) {
+    private static BigDecimal highForTimePeriod(List<DataForOneMinute> list) {
         List<BigDecimal> high = list.stream()
                 .map(DataForOneMinute::getValue)
                 .map(MyValue::getHigh)
@@ -76,7 +76,7 @@ public class MethodGet {
         return high.get(high.size() - 1);
     }
 
-    private static BigDecimal closeForTimePerioid(List<DataForOneMinute> list) {
+    private static BigDecimal closeForTimePeriod(List<DataForOneMinute> list) {
         List<BigDecimal> close = list.stream()
                 .map(DataForOneMinute::getValue)
                 .map(MyValue::getClose)

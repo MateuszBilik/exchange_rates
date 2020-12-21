@@ -2,9 +2,11 @@ package Methods;
 
 import WorkWithFile.DataForOneMinute;
 import org.junit.jupiter.api.Test;
+
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.List;
+
 
 class MethodGetTest {
 
@@ -62,10 +64,10 @@ class MethodGetTest {
     @Test
     void getTypeMinute_compareSomeExamplesParameterFromFileWithCorrectAnswer() throws IOException {
         // given
-        BigDecimal expectedValueHigh = new BigDecimal("1.16352");
-        BigDecimal expectedValueLow = new BigDecimal("1.16348");
-        BigDecimal expectedValueOpen = new BigDecimal("1.16348");
-        BigDecimal expectedValueClose = new BigDecimal("1.16351");
+        BigDecimal expectedValueHigh = BigDecimal.valueOf(1.16352);
+        BigDecimal expectedValueLow = BigDecimal.valueOf(1.16348);
+        BigDecimal expectedValueOpen = BigDecimal.valueOf(1.16348);
+        BigDecimal expectedValueClose = BigDecimal.valueOf(1.16351);
         // when
         BigDecimal valueHigh = MethodGet.getTypeForMinute(listOfData, day, month, year, hour, minute,  "high");
         BigDecimal valueLow = MethodGet.getTypeForMinute(listOfData, day, month, year, hour, minute, "low");
@@ -81,17 +83,17 @@ class MethodGetTest {
     @Test
     void volatilityForDayHourMinute_compareSomeExamplesParameterFromFileWithCorrectAnswer() throws IOException {
         //given
-        BigDecimal valueForDayExpected = new BigDecimal("0.00203");
-        BigDecimal valueForHourExpected = new BigDecimal("0.00104");
-        BigDecimal valueForMinuteExpected = new BigDecimal("0.00004");
+        BigDecimal valueForDayExpected = BigDecimal.valueOf(0.00203);
+        BigDecimal valueForHourExpected = BigDecimal.valueOf(0.00104);
+        BigDecimal valueForMinuteExpected = BigDecimal.valueOf(0.00004);
         //when
         BigDecimal valueForDay = MethodVolatility.volatilityForDay(listOfData, day, month, year);
         BigDecimal valueForHour = MethodVolatility.volatilityForHour(listOfData, day, month, year, hour);
         BigDecimal valueForMinute = MethodVolatility.volatilityForMinute(listOfData, day, month, year, hour, minute);
         //then
-        assert(valueForDayExpected).equals(valueForDay);
-        assert(valueForHourExpected).equals(valueForHour);
-        assert(valueForMinuteExpected).equals(valueForMinute);
+        assert(valueForDayExpected.compareTo(valueForDay) == 0);
+        assert(valueForHourExpected.compareTo(valueForHour) == 0);
+        assert(valueForMinuteExpected.compareTo(valueForMinute) == 0);
     }
 
 

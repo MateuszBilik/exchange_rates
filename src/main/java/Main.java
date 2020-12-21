@@ -1,10 +1,8 @@
 import Console.Console;
+import Methods.MethodGet;
 import Methods.MethodVolatility;
 import WorkWithFile.DataForOneMinute;
-import Methods.MethodGet;
 
-import java.io.BufferedReader;
-import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
@@ -14,6 +12,7 @@ public class Main {
 
         Console console = new Console();
         List<DataForOneMinute> listOfData = console.startAndLoad();
+
 
 
         Integer year = 2020;
@@ -27,11 +26,12 @@ public class Main {
         System.out.println(MethodGet.getTypeForMinute(listOfData, day, month, year, hour, minute, typeData));
         System.out.println(MethodGet.getForMinute(listOfData, day, month, year, hour, minute));
 
-        System.out.println("\nWartość dla dnia:");
-        System.out.println(MethodVolatility.volatilityForDay(listOfData, day, month, year));
 
-        System.out.println("\nWartość dla godziny:");
-        System.out.println(MethodVolatility.volatilityForMinute(listOfData, day, month, year, hour, minute));
+        System.out.println(MethodVolatility.mostVolatileHour(listOfData));
+        System.out.println(MethodVolatility.mostVolatileDay(listOfData));
+        System.out.println(MethodVolatility.averageMinutelyVolatility(listOfData));
+        System.out.println(MethodVolatility.averageHourlyVolatility(listOfData));
+        System.out.println(MethodVolatility.averageDailyVolatility(listOfData));
 
 
     }

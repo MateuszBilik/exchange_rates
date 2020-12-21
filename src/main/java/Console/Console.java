@@ -1,14 +1,8 @@
 package Console;
 
 import WorkWithFile.DataForOneMinute;
-import WorkWithFile.MyDate;
-import WorkWithFile.MyTime;
-import WorkWithFile.MyValue;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 
 public class Console {
@@ -26,12 +20,11 @@ public class Console {
         return ConvertToWork.createListWithDataForOneMinutesLines(myFile);
     }
 
-    public void goodBay() {
+    public void goodbye() {
 
         //write history to file
         System.out.println("""
-                Good bay!
-                Thank you for used our program.
+                Thank you for using our app.
                 See you soon!
                 """);
     }
@@ -39,9 +32,9 @@ public class Console {
     private void greetings() {
         System.out.println("""
                 Hello,
-                Welcome in this program!
-                You can always quit program - You just write "exit".
-                Please, give me your file name with you would like to work:
+                Welcome in this app!
+                You can always quit the app by writing "exit".
+                Please, give your file name which you would like to work with:
                 """);
     }
 }
