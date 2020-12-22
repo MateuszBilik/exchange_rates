@@ -1,7 +1,7 @@
 package Methods;
 
-import WorkWithFile.DataForOneMinute;
-import WorkWithFile.MyValue;
+import OneLineOfData.DataForOneMinute;
+import OneLineOfData.MyValue;
 
 import java.math.BigDecimal;
 import java.util.List;

@@ -1,6 +1,6 @@
 package Methods;
 
-import WorkWithFile.DataForOneMinute;
+import OneLineOfData.DataForOneMinute;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;

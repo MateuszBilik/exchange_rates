@@ -1,6 +1,6 @@
 package Methods;
 
-import WorkWithFile.DataForOneMinute;
+import OneLineOfData.DataForOneMinute;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;

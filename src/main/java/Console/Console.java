@@ -1,17 +1,12 @@
 package Console;
 
-import Methods.MethodGet;
 import Methods.MethodVolatility;
-import WorkWithFile.DataForOneMinute;
-import WorkWithFile.MyDate;
-import WorkWithFile.MyTime;
-
+import OneLineOfData.DataForOneMinute;
 import java.io.BufferedReader;
 import java.util.List;
 import java.util.Scanner;
 
 public class Console {
-
 
     public void workWithFile(List<DataForOneMinute> listOfData) {
         System.out.println("What do you want to do with file?");
@@ -70,13 +65,10 @@ public class Console {
                 break;
             case "get":
                 try {
-                    doGet(listOfData, listToMethod);
-                } catch (BadCommandException e) {
-                    System.out.println("You tried to use \"get\" but something was wrong, try again." +
-                            "\nCheck your date or time");
-                } catch (ArrayIndexOutOfBoundsException ee) {
-                    System.out.println("You tried to use \"get\" but something was wrong, try again." +
-                            "\nCheck your date or time");
+                   new GetForConsole().doGet(listOfData, listToMethod);
+                } catch (ArrayIndexOutOfBoundsException|BadCommandException e) {
+                    System.out.println("You tried to use method \"get\" but something was wrong, try again." +
+                            "\nCheck your date or time. Another option can be to lack data for this time in this file");
                 }
                 break;
             case "volatility":
@@ -85,71 +77,4 @@ public class Console {
                 System.out.println("There isn't this method, try again");
         }
     }
-
-    private void doGet(List<DataForOneMinute> listOfData, String[] listToMethod) throws BadCommandException {
-        MyDate myDate = dateToTerminal(listToMethod[2]);
-        if (listToMethod.length == 3) {
-            System.out.println(MethodGet.getTypeForDay(listOfData, myDate.getDay(),
-                    myDate.getMonth(), myDate.getYear(), listToMethod[1]));
-        } else if (listToMethod.length == 4) {
-            if (listToMethod[3] == "\\d{2}") {
-                MyTime myTime = timeToTerminalOnlyHour(listToMethod[3]);
-                System.out.println(MethodGet.getTypeForHour(listOfData, myDate.getDay(),
-                        myDate.getMonth(), myDate.getYear(), myTime.getHour(), listToMethod[1]));
-            } else if (listToMethod[3] == "\\d{2}\\:\\d{2}") {
-                MyTime myTime = timeToTerminal(listToMethod[3]);
-                System.out.println(MethodGet.getTypeForMinute(listOfData, myDate.getDay(),
-                        myDate.getMonth(), myDate.getYear(), myTime.getHour(), myTime.getMinute(), listToMethod[1]));
-            } else {
-                System.out.println("Something was wrong, try again \n Check your date or time");
-            }
-        } else {
-            System.out.println("Something was wrong, try again \n Check your date or time");
-        }
-    }
-
-    private MyDate dateToTerminal(String date) throws BadCommandException {
-
-        if (date.equals("\\d{4}\\.\\d{2}\\.\\d{2}")) {
-            String[] listOfDate = date.split("."); // correct number of days and months
-            if (Integer.valueOf(listOfDate[1]) < 13 && Integer.valueOf(listOfDate[2]) < 32 &&
-                    0 < Integer.valueOf(listOfDate[1]) && 0 < Integer.valueOf(listOfDate[2])) {
-                return new MyDate(Integer.valueOf(listOfDate[0]),
-                        Integer.valueOf(listOfDate[1]), Integer.valueOf(listOfDate[2]));
-            } else {
-                throw new BadCommandException();
-            }
-        } else {
-            throw new BadCommandException();
-        }
-    }
-
-    private MyTime timeToTerminal(String time) throws BadCommandException {
-
-        if (time == "\\d{2}\\:\\d{2}") {
-            String[] listOfDate = time.split(":"); // correct number of hour and minutes
-            if (Integer.valueOf(listOfDate[0]) < 24 && Integer.valueOf(listOfDate[1]) < 60 &&
-                    0 <= Integer.valueOf(listOfDate[0]) && 0 <= Integer.valueOf(listOfDate[1])) {
-                return new MyTime(Integer.valueOf(listOfDate[0]), Integer.valueOf(listOfDate[1]));
-            } else {
-                throw new BadCommandException();
-            }
-        } else {
-            throw new BadCommandException();
-        }
-    }
-
-    private MyTime timeToTerminalOnlyHour(String time) throws BadCommandException {
-
-        if (time == "\\d{2}\\") {  // correct number of hour
-            if (Integer.valueOf(time) < 24 && 0 <= Integer.valueOf(time)) {
-                return new MyTime(Integer.valueOf(time), 0);
-            } else {
-                throw new BadCommandException();
-            }
-        } else {
-            throw new BadCommandException();
-        }
-    }
-
 }

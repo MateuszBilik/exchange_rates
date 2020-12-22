@@ -1,9 +1,9 @@
 package Console;
 
-import WorkWithFile.DataForOneMinute;
-import WorkWithFile.MyDate;
-import WorkWithFile.MyTime;
-import WorkWithFile.MyValue;
+import OneLineOfData.DataForOneMinute;
+import OneLineOfData.MyDate;
+import OneLineOfData.MyTime;
+import OneLineOfData.MyValue;
 
 import java.io.BufferedReader;
 import java.io.IOException;

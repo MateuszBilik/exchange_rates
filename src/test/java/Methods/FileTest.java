@@ -1,13 +1,11 @@
 package Methods;
 
-import WorkWithFile.DataForOneMinute;
-import WorkWithFile.MyDate;
-import WorkWithFile.MyTime;
-import WorkWithFile.MyValue;
-import org.junit.jupiter.api.Test;
+import OneLineOfData.DataForOneMinute;
+import OneLineOfData.MyDate;
+import OneLineOfData.MyTime;
+import OneLineOfData.MyValue;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.math.BigDecimal;

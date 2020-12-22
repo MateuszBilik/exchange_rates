@@ -1,4 +1,4 @@
-package WorkWithFile;
+package OneLineOfData;
 
 public class MyDate {
 
@@ -26,10 +26,8 @@ public class MyDate {
 
     @Override
     public String toString() {
-        return "MyDate{" +
-                "year=" + year +
-                ", month=" + month +
-                ", day=" + day +
-                '}';
+        return year +
+                "." + month +
+                "." + day;
     }
 }

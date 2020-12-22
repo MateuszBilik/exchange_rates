@@ -1,4 +1,4 @@
-package WorkWithFile;
+package OneLineOfData;
 
 
 import lombok.AllArgsConstructor;
@@ -16,4 +16,12 @@ public class MyValue {
     private BigDecimal high;
     private BigDecimal low;
     private BigDecimal close;
+
+    @Override
+    public String toString() {
+        return  "open = " + open +
+                ", high = " + high +
+                ", low = " + low +
+                ", close = " + close;
+    }
 }

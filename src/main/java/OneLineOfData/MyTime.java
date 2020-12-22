@@ -1,4 +1,4 @@
-package WorkWithFile;
+package OneLineOfData;
 
 public class MyTime {
     private int hour;
@@ -28,10 +28,7 @@ public class MyTime {
 
     @Override
     public String toString() {
-        return "MyTime{" +
-                "hour=" + hour +
-                ", minute=" + minute +
-                '}';
+        return hour + ":" + minute;
     }
 
 }

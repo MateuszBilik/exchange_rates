@@ -1,5 +1,5 @@
 import Console.Console;
-import WorkWithFile.DataForOneMinute;
+import OneLineOfData.DataForOneMinute;
 
 import java.util.List;
 
