@@ -3,7 +3,6 @@ package Console;
 import Methods.MethodVolatility;
 import OneLineOfData.DataForOneMinute;
 import org.apache.log4j.Logger;
-
 import java.io.BufferedReader;
 import java.util.List;
 import java.util.Scanner;
@@ -13,7 +12,10 @@ public class Console {
     Logger logger = Logger.getLogger(Console.class);
 
     public void workWithFile(List<DataForOneMinute> listOfData) {
-        logger.info("What do you want to do with file?");
+        logger.info("""
+                What do you want to do with file?
+                If you don't know, write \"help\"
+                """);
         while (true) {
             terminal(listOfData);
         }
@@ -25,24 +27,6 @@ public class Console {
         BufferedReader myFile = new LoadFile().loadFile();
         return ConvertToWork.createListWithDataForOneMinutesLines(myFile);
     }
-
-    void goodbye() {
-        logger.info("""
-                Thank you for using our app.
-                See you soon!
-                """);
-    }
-
-    private void greetings() {
-        logger.info("""
-                Hello,
-                Welcome in this app!
-                You can always quit the app by writing "exit".
-                Please, give your file name which you would like to work with:
-                """);
-    }
-
-
 
     private void terminal(List<DataForOneMinute> listOfData) {
         String inputText = new Scanner(System.in).nextLine()
@@ -74,7 +58,7 @@ public class Console {
             case "get":
                 try {
                    new GetForConsole().doGet(listOfData, listToMethod);
-                } catch (ArrayIndexOutOfBoundsException|BadCommandException e) {
+                } catch (IndexOutOfBoundsException|BadCommandException e) {
                     logger.info("You tried to use method \"get\" but something was wrong, try again." +
                             "\nCheck your date or time. Another option can be to lack data for this time in this file");
                 }
@@ -82,20 +66,35 @@ public class Console {
             case "volatility":
                 try {
                     new VolatilityForConsole().doVolatility(listOfData, listToMethod);
-                } catch (ArrayIndexOutOfBoundsException|BadCommandException e) {
+                } catch (BadCommandException|IndexOutOfBoundsException e) {
                     logger.info("You tried to use method \"volatility\" but something was wrong, try again." +
                             "\nCheck your date or time. Another option can be to lack data for this time in this file");
                 }
                 break;
             default:
-                logger.info("There isn't this method, try again");
+                logger.info("There isn't this method, try again or check out using \"help\"");
         }
     }
 
+    void goodbye() {
+        logger.info("""
+                Thank you for using our app.
+                See you soon!
+                """);
+    }
+
+    private void greetings() {
+        logger.info("""
+                Hello,
+                Welcome in this app!
+                You can always quit the app by writing "exit".
+                Please, give your file name which you would like to work with:
+                """);
+    }
     private void help() {
         logger.info("""
                 List of commends:
-                 - get <high/low/open/close yyyy.mm.dd hh:mm (choose one type)
+                 - get <high/low/open/close> yyyy.mm.dd hh:mm (choose one type)
                  - get <high/low/open/close> yyyy.mm.dd hh (choose one type)
                  - get <high/low/open/close> yyyy.mm.dd (choose one type)
                  - get yyyy.mm.dd hh:mm

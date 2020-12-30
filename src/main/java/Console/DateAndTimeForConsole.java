@@ -1,8 +1,6 @@
 package Console;
-
 import OneLineOfData.MyDate;
 import OneLineOfData.MyTime;
-
 import java.util.regex.Pattern;
 
 public class DateAndTimeForConsole {
@@ -51,5 +49,4 @@ public class DateAndTimeForConsole {
             throw new BadCommandException();
         }
     }
-
 }

@@ -4,7 +4,6 @@ import org.apache.log4j.ConsoleAppender;
 import org.apache.log4j.FileAppender;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PatternLayout;
-import org.apache.log4j.Level;
 
 import java.time.LocalDateTime;
 
@@ -12,14 +11,14 @@ import java.time.LocalDateTime;
 public class History {
 
     public static void configuration() {
-        String historyFile = "History_" + LocalDateTime.now() + ".txt";
-
-//        File history = new File("/src/main/java/Console/History/" + historyFile);
+        String historyFile = "src/main/java/Console/History/History_" + LocalDateTime.now() + ".txt";
 
         // creates pattern layout
         PatternLayout layout = new PatternLayout();
-        String conversionPattern = "%m %n";
-        layout.setConversionPattern(conversionPattern);
+        layout.setConversionPattern("%m %n");
+
+        PatternLayout layoutFile = new PatternLayout();
+        layoutFile.setConversionPattern("[%d{HH:mm:ss}] %n%m %n");
 
         // creates console appender
         ConsoleAppender consoleAppender = new ConsoleAppender();
@@ -29,15 +28,12 @@ public class History {
         // creates file appender
         FileAppender fileAppender = new FileAppender();
         fileAppender.setFile(historyFile);
-        fileAppender.setLayout(layout);
+        fileAppender.setLayout(layoutFile);
         fileAppender.activateOptions();
-
 
         // configures the root logger
         Logger rootLogger = Logger.getRootLogger();
-        rootLogger.setLevel(Level.DEBUG);
         rootLogger.addAppender(consoleAppender);
         rootLogger.addAppender(fileAppender);
-
     }
 }
