@@ -2,36 +2,39 @@ package Console;
 
 import Methods.MethodVolatility;
 import OneLineOfData.DataForOneMinute;
+import org.apache.log4j.Logger;
+
 import java.io.BufferedReader;
 import java.util.List;
 import java.util.Scanner;
 
 public class Console {
 
+    Logger logger = Logger.getLogger(Console.class);
+
     public void workWithFile(List<DataForOneMinute> listOfData) {
-        System.out.println("What do you want to do with file?");
+        logger.info("What do you want to do with file?");
         while (true) {
             terminal(listOfData);
         }
     }
 
     public List<DataForOneMinute> startAndLoad() {
+        History.configuration();
         greetings();
         BufferedReader myFile = new LoadFile().loadFile();
         return ConvertToWork.createListWithDataForOneMinutesLines(myFile);
     }
 
-    private void goodbye() {
-
-        //write history to file
-        System.out.println("""
+    void goodbye() {
+        logger.info("""
                 Thank you for using our app.
                 See you soon!
                 """);
     }
 
     private void greetings() {
-        System.out.println("""
+        logger.info("""
                 Hello,
                 Welcome in this app!
                 You can always quit the app by writing "exit".
@@ -39,42 +42,76 @@ public class Console {
                 """);
     }
 
+
+
     private void terminal(List<DataForOneMinute> listOfData) {
         String inputText = new Scanner(System.in).nextLine()
                 .toLowerCase().replaceAll("\\s+", " ");
         String[] listToMethod = inputText.split(" ");
+        logger.info(inputText);
 
         switch (listToMethod[0]) {
             case "exit":
+                goodbye();
                 System.exit(0);
-                break;
+            case "help":
+                help();
             case "most_volatile_day":
-                System.out.println(MethodVolatility.mostVolatileDay(listOfData));
+                logger.info(MethodVolatility.mostVolatileDay(listOfData));
                 break;
             case "most_volatile_hour":
-                System.out.println(MethodVolatility.mostVolatileHour(listOfData));
+                logger.info(MethodVolatility.mostVolatileHour(listOfData));
                 break;
             case "average_minutely_volatility":
-                System.out.println(MethodVolatility.averageMinutelyVolatility(listOfData));
+                logger.info(MethodVolatility.averageMinutelyVolatility(listOfData));
                 break;
             case "average_hourly_volatility":
-                System.out.println(MethodVolatility.averageHourlyVolatility(listOfData));
+                logger.info(MethodVolatility.averageHourlyVolatility(listOfData));
                 break;
             case "average_daily_volatility":
-                System.out.println(MethodVolatility.averageDailyVolatility(listOfData));
+                logger.info(MethodVolatility.averageDailyVolatility(listOfData));
                 break;
             case "get":
                 try {
                    new GetForConsole().doGet(listOfData, listToMethod);
                 } catch (ArrayIndexOutOfBoundsException|BadCommandException e) {
-                    System.out.println("You tried to use method \"get\" but something was wrong, try again." +
+                    logger.info("You tried to use method \"get\" but something was wrong, try again." +
                             "\nCheck your date or time. Another option can be to lack data for this time in this file");
                 }
                 break;
             case "volatility":
+                try {
+                    new VolatilityForConsole().doVolatility(listOfData, listToMethod);
+                } catch (ArrayIndexOutOfBoundsException|BadCommandException e) {
+                    logger.info("You tried to use method \"volatility\" but something was wrong, try again." +
+                            "\nCheck your date or time. Another option can be to lack data for this time in this file");
+                }
                 break;
             default:
-                System.out.println("There isn't this method, try again");
+                logger.info("There isn't this method, try again");
         }
+    }
+
+    private void help() {
+        logger.info("""
+                List of commends:
+                 - get <high/low/open/close yyyy.mm.dd hh:mm (choose one type)
+                 - get <high/low/open/close> yyyy.mm.dd hh (choose one type)
+                 - get <high/low/open/close> yyyy.mm.dd (choose one type)
+                 - get yyyy.mm.dd hh:mm
+                 - get yyyy.mm.dd hh
+                 - get yyyy.mm.dd
+                 - volatility yyyy.mm.dd hh:mm
+                 - volatility yyyy.mm.dd hh
+                 - volatility yyyy.mm.dd
+                 - most_volatile_day
+                 - most_volatile_hour
+                 - average_minutely_volatility
+                 - average_hourly_volatility
+                 - average_daily_volatility
+                 
+                 for example: get 2020.11.02 13:55 
+                 for example: get low 2020.11.02 13:55
+                 """);
     }
 }

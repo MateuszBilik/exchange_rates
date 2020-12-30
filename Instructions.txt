@@ -28,8 +28,8 @@ Volatility = High - Low
  przyklad get 2020.11.02 13:55 -> {1.162390,1.162400,1.162340,1.162400,0}
  - get yyyy.mm.dd hh
  - get yyyy.mm.dd
- - volatility yyyy.mm.dd-hh:mm
- - volatility yyyy.mm.dd-hh
+ - volatility yyyy.mm.dd hh:mm
+ - volatility yyyy.mm.dd hh
  - volatility yyyy.mm.dd
  - most_volatile_day
  - most_volatile_hour

@@ -3,7 +3,6 @@ package Console;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 
@@ -17,6 +16,7 @@ public class LoadFile {
         while (!(hasFileExist)) {
             String inputText = new Scanner(System.in).nextLine();
             if (inputText.equals("exit")) {
+                new Console().goodbye();
                 System.exit(0);
                 break;
             } else {
